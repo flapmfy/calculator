@@ -1,20 +1,29 @@
 :root {
-    --font-main: 'League Spartan', sans-serif;
+    /* fonts */
+    --ff-main: 'League Spartan', sans-serif;
 
-    --clr-main-bg: hsl(222, 26%, 31%);
-    --clr-keypad: hsl(223, 31%, 20%);
-    --clr-blue: hsl(224, 36%, 15%);
+    /************** theme1 **************/
+    --clr-main1: hsl(222, 26%, 31%);
+    --clr-keypad1: hsl(223, 31%, 20%);
+    --clr-screen1: hsl(224, 36%, 15%);
 
-    --clr-key: hsl(225, 21%, 49%);
-    --clr-key-shadow: hsl(224, 28%, 35%);
-
-    --clr-red-bg: hsl(6, 63%, 50%);
-    --clr-red-shadow: hsl(6, 70%, 34%);
-    --clr-orange-bg: hsl(30, 25%, 89%);
-    --clr-orange-shadow: hsl(28, 16%, 65%);
+    /* keys */
+    --clr-orange-bg1: hsl(30, 25%, 89%);
+    --clr-orange-shadow1: hsl(28, 16%, 65%);
 
     --clr-blue-txt: hsl(221, 14%, 31%);
+
+    /* special keys */
+    --clr-key: hsl(225, 21%, 49%);
+    --clr-key-shadow: hsl(224, 28%, 35%);
+    --clr-red-bg: hsl(6, 63%, 50%);
+    --clr-red-shadow: hsl(6, 70%, 34%);
+
     --clr-white: hsl(0, 0%, 100%);
+
+    /************** theme2 **************/
+
+    /************** theme3 **************/
 }
 
 *,
@@ -26,6 +35,142 @@
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     line-height: 1.5;
-    font-family: var(--font-main);
+    font-family: var(--ff-main);
+    background-color: var(--clr-main1);
+    color: var(--clr-white);
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.calculator {
+    width: 100%;
+    max-width: 35rem;
+    min-width: 365px;
+    padding: 1.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+}
+
+.calculator__header {
+    line-height: 1;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.theme-setter {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.8rem;
+    text-transform: uppercase;
+}
+
+.toggle-indicator {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+.toggle {
+    appearance: none;
+    position: relative;
+    width: 50px;
+    height: 20px;
+    border-radius: 50px;
+    background-color: var(--clr-keypad1);
+    cursor: pointer;
+}
+
+.toggle::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background-color: var(--clr-red-bg);
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.toggle:hover::before {
+    filter: brightness(120%);
+}
+
+.toggle:checked::before {
+    left: calc(100% - 20px);
+}
+
+.screen {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 6.5rem;
+    border-radius: 8px;
+    padding-inline: 2rem;
+    background-color: var(--clr-screen1);
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--clr-keypad1);
+}
+
+.key {
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.key:hover {
+    filter: brightness(120%);
+}
+
+.numkey {
+    background-color: var(--clr-orange-bg1);
+    color: var(--clr-blue-txt);
+    border-bottom: 4px solid var(--clr-orange-shadow1);
+}
+
+.delete, 
+.reset {
+    background-color: var(--clr-key);
+    color: var(--clr-white);
+    border-bottom: 4px solid var(--clr-key-shadow);
+}
+
+.reset {
+    grid-column: span 2;
+}
+
+.calculate {
+    grid-column: span 2;
+    background-color: var(--clr-red-bg);
+    color: var(--clr-white);
+    border-bottom: 4px solid var(--clr-red-shadow);
 }

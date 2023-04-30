@@ -13,37 +13,41 @@
 </head>
 
 <body>
-  <main class="main">
     <div class="calculator">
-      <header class="space-between">
+      <header class="space-between calculator__header">
         <div class="logo">calc</div>
-        <div class="theme-setter">theme 1 2 3</div>
+        <div class="theme-setter">
+          <div>theme</div>
+          <div class="toggle-element">
+            <div class="toggle-indicator"><span>1</span><span>2</span></div>
+            <input class="toggle" type="checkbox" name="" id="">
+          </div>
+        </div>
       </header>
 
-      <section class="display"></section>
+      <section class="screen"></section>
 
       <section class="keypad">
-        <div class="key">7</div>
-        <div class="key">8</div>
-        <div class="key">9</div>
-        <div class="key">del</div>
-        <div class="key">4</div>
-        <div class="key">5</div>
-        <div class="key">6</div>
-        <div class="key">+</div>
-        <div class="key">1</div>
-        <div class="key">2</div>
-        <div class="key">3</div>
-        <div class="key">-</div>
-        <div class="key">.</div>
-        <div class="key">0</div>
-        <div class="key">/</div>
-        <div class="key">x</div>
+        <div class="key numkey">7</div>
+        <div class="key numkey">8</div>
+        <div class="key numkey">9</div>
+        <div class="key delete">del</div>
+        <div class="key numkey">4</div>
+        <div class="key numkey">5</div>
+        <div class="key numkey">6</div>
+        <div class="key numkey">+</div>
+        <div class="key numkey">1</div>
+        <div class="key numkey">2</div>
+        <div class="key numkey">3</div>
+        <div class="key numkey">-</div>
+        <div class="key numkey">.</div>
+        <div class="key numkey">0</div>
+        <div class="key numkey">/</div>
+        <div class="key numkey">x</div>
         
-        <div class="key">reset</div>
-        <div class="key">=</div>
+        <div class="key reset">reset</div>
+        <div class="key calculate">=</div>
       </section>
     </div>
-  </main>
 </body>
 </html>
