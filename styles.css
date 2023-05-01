@@ -48,12 +48,12 @@ body {
 .space-between {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .calculator {
     width: 100%;
-    max-width: 35rem;
+    max-width: 30rem;
     min-width: 365px;
     padding: 1.5rem;
 
@@ -81,34 +81,49 @@ body {
     font-size: 0.8rem;
 }
 
-.toggle {
-    appearance: none;
+.toggle3w {
     position: relative;
-    width: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60px;
     height: 20px;
-    border-radius: 50px;
     background-color: var(--clr-keypad1);
-    cursor: pointer;
+    border-radius: 50px;
 }
 
-.toggle::before {
-    content: "";
+.dot {
     position: absolute;
     width: 20px;
     height: 20px;
-    top: 0;
     left: 0;
+    top: 0;
     background-color: var(--clr-red-bg);
     border-radius: 50%;
     transition: 0.2s;
 }
 
-.toggle:hover::before {
-    filter: brightness(120%);
+.radio {
+    appearance: none;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
 }
 
-.toggle:checked::before {
+.radio1:checked ~ .dot {
+    left: 0px;
+}
+
+.radio2:checked ~ .dot {
+    left: calc(50% - 10px);
+}
+
+.radio3:checked ~ .dot {
     left: calc(100% - 20px);
+}
+
+.toggle3w:hover .dot {
+    filter: brightness(120%);
 }
 
 .screen {
