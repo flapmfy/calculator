@@ -1,16 +1,9 @@
 "use strict";
 
-// globals
+///////////////////// globals /////////////////////
 const radioBoxes = document.querySelectorAll(".radio");
 
-// events
-radioBoxes.forEach(radio => {
-    radio.addEventListener('change', () => {
-        setTheme(getTheme());
-    })
-});
-
-// handlers
+///////////////////// handlers /////////////////////
 function getTheme() {
     for (let radio of radioBoxes) {
         if (radio.checked) {
@@ -19,7 +12,28 @@ function getTheme() {
     }
 }
 
-// functions
+///////////////////// events /////////////////////
+trySavedTheme();
+
+radioBoxes.forEach(radio => {
+    radio.addEventListener('change', () => {
+        setTheme(getTheme());
+    })
+});
+
+///////////////////// functions /////////////////////
 function setTheme(theme) {
     document.documentElement.className = theme;
+    localStorage.setItem('theme', theme);
+}
+
+function trySavedTheme() {
+    const theme = localStorage.getItem('theme');
+    for (let radio of radioBoxes) {
+        if (radio.value === theme) {
+            radio.checked = true;
+            break;
+        }
+    }
+    theme && setTheme(theme);
 }
