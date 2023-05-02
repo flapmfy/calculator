@@ -1,29 +1,68 @@
+:root,
+    :root.theme1 {
+        /************** theme1 **************/
+        --clr-main: hsl(222, 26%, 31%);
+        --clr-keypad: hsl(223, 31%, 20%);
+        --clr-screen: hsl(224, 36%, 15%);
+
+        /* keys */
+        --clr-base-numeric: hsl(30, 25%, 89%);
+        --clr-base-numeric-shadow: hsl(28, 16%, 65%);
+
+        --clr-numkey-txt: hsl(221, 14%, 31%);
+        --clr-header: hsl(0, 0%, 100%);
+
+        /* special keys */
+        --clr-special-key: hsl(225, 21%, 49%);
+        --clr-special-key-shadow: hsl(224, 28%, 35%);
+        --clr-vibrant-bg: hsl(6, 63%, 50%);
+        --clr-vibrant-shadow: hsl(6, 70%, 34%);
+    }
+
+    :root.theme2 {
+        --clr-main: hsl(0, 0%, 90%);
+        --clr-keypad: hsl(0, 5%, 81%);
+        --clr-screen: hsl(0, 0%, 93%);
+
+        /* keys */
+        --clr-base-numeric: hsl(45, 7%, 89%);
+        --clr-base-numeric-shadow: hsl(35, 11%, 61%);
+
+        --clr-numkey-txt: hsl(60, 10%, 19%);
+        --clr-header: hsl(60, 10%, 19%);
+
+        /* special keys */
+        --clr-special-key: hsl(185, 42%, 37%);
+        --clr-special-key-shadow: hsl(185, 58%, 25%);
+        --clr-vibrant-bg: hsl(25, 98%, 40%);
+        --clr-vibrant-shadow: hsl(25, 99%, 27%);
+    }
+
+    :root.theme3 {
+        --clr-main: hsl(268, 75%, 9%);
+        --clr-keypad: hsl(268, 71%, 12%);
+        --clr-screen: hsl(268, 71%, 12%);
+
+        /* keys */
+        --clr-base-numeric: hsl(268, 47%, 21%);
+        --clr-base-numeric-shadow: hsl(290, 70%, 36%);
+
+        --clr-numkey-txt: hsl(52, 100%, 62%);
+        --clr-header: hsl(52, 100%, 62%);
+
+
+        /* special keys */
+        --clr-special-key: hsl(281, 89%, 26%);
+        --clr-special-key-shadow: hsl(285, 91%, 52%);
+        --clr-vibrant-bg: hsl(176, 100%, 44%);
+        --clr-vibrant-shadow: hsl(177, 92%, 70%);
+    }
+
 :root {
     /* fonts */
     --ff-main: 'League Spartan', sans-serif;
 
-    /************** theme1 **************/
-    --clr-main1: hsl(222, 26%, 31%);
-    --clr-keypad1: hsl(223, 31%, 20%);
-    --clr-screen1: hsl(224, 36%, 15%);
-
-    /* keys */
-    --clr-orange-bg1: hsl(30, 25%, 89%);
-    --clr-orange-shadow1: hsl(28, 16%, 65%);
-
-    --clr-blue-txt: hsl(221, 14%, 31%);
-
-    /* special keys */
-    --clr-key: hsl(225, 21%, 49%);
-    --clr-key-shadow: hsl(224, 28%, 35%);
-    --clr-red-bg: hsl(6, 63%, 50%);
-    --clr-red-shadow: hsl(6, 70%, 34%);
-
     --clr-white: hsl(0, 0%, 100%);
-
-    /************** theme2 **************/
-
-    /************** theme3 **************/
 }
 
 *,
@@ -41,7 +80,7 @@ body {
     min-height: 100vh;
     line-height: 1.5;
     font-family: var(--ff-main);
-    background-color: var(--clr-main1);
+    background-color: var(--clr-main);
     color: var(--clr-white);
 }
 
@@ -62,15 +101,23 @@ body {
     gap: 1.4rem;
 }
 
+.calculator__header {
+    color: var(--clr-header);
+    font-weight: 700;
+}
+
 .logo {
     font-size: 2rem;
-    font-weight: 700;
+}
+
+.subtext {
+    font-size: 0.9rem;
 }
 
 .theme-setter {
     display: flex;
     align-items: flex-end;
-    gap: 0.8rem;
+    gap: 1.4rem;
     text-transform: uppercase;
 }
 
@@ -87,18 +134,18 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 60px;
-    height: 20px;
-    background-color: var(--clr-keypad1);
+    height: 22px;
+    background-color: var(--clr-keypad);
     border-radius: 50px;
 }
 
 .dot {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 0;
-    top: 0;
-    background-color: var(--clr-red-bg);
+    width: 16px;
+    height: 16px;
+    left: 10px;
+    top: 3px;
+    background-color: var(--clr-vibrant-bg);
     border-radius: 50%;
     transition: 0.2s;
 }
@@ -111,15 +158,15 @@ body {
 }
 
 .radio1:checked ~ .dot {
-    left: 0px;
+    left: 3px;
 }
 
 .radio2:checked ~ .dot {
-    left: calc(50% - 10px);
+    left: calc(50% - 10px + 3px);
 }
 
 .radio3:checked ~ .dot {
-    left: calc(100% - 20px);
+    left: calc(100% - 20px + 1px);
 }
 
 .toggle3w:hover .dot {
@@ -133,7 +180,8 @@ body {
     height: 6.5rem;
     border-radius: 8px;
     padding-inline: 2rem;
-    background-color: var(--clr-screen1);
+    background-color: var(--clr-screen);
+    color: var(--clr-header);
     font-size: 3rem;
     font-weight: 700;
 }
@@ -145,13 +193,13 @@ body {
 
     padding: 1rem;
     border-radius: 8px;
-    background-color: var(--clr-keypad1);
+    background-color: var(--clr-keypad);
 }
 
 .key {
     cursor: pointer;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: 700;
     border-radius: 8px;
     transition: 0.2s;
@@ -162,16 +210,16 @@ body {
 }
 
 .numkey {
-    background-color: var(--clr-orange-bg1);
-    color: var(--clr-blue-txt);
-    border-bottom: 4px solid var(--clr-orange-shadow1);
+    background-color: var(--clr-base-numeric);
+    color: var(--clr-numkey-txt);
+    border-bottom: 4px solid var(--clr-base-numeric-shadow);
 }
 
 .delete, 
 .reset {
-    background-color: var(--clr-key);
+    background-color: var(--clr-special-key);
     color: var(--clr-white);
-    border-bottom: 4px solid var(--clr-key-shadow);
+    border-bottom: 4px solid var(--clr-special-key-shadow);
     text-transform: uppercase;
 }
 
@@ -181,7 +229,7 @@ body {
 
 .calculate {
     grid-column: span 2;
-    background-color: var(--clr-red-bg);
+    background-color: var(--clr-vibrant-bg);
     color: var(--clr-white);
-    border-bottom: 4px solid var(--clr-red-shadow);
+    border-bottom: 4px solid var(--clr-vibrant-shadow);
 }
