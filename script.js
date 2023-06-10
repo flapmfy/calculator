@@ -13,13 +13,14 @@ function getTheme() {
 }
 
 ///////////////////// events /////////////////////
-trySavedTheme();
-
 radioBoxes.forEach(radio => {
     radio.addEventListener('change', () => {
         setTheme(getTheme());
     })
 });
+
+///////////////////// on start /////////////////////
+trySavedTheme();
 
 ///////////////////// functions /////////////////////
 function setTheme(theme) {
