@@ -2,6 +2,9 @@
 
 ///////////////////// globals /////////////////////
 const radioBoxes = document.querySelectorAll(".radio");
+const display = document.querySelector(".screen");
+const keys = document.querySelectorAll(".key");
+let dotCount = 0;
 
 ///////////////////// handlers /////////////////////
 function getTheme() {
@@ -19,10 +22,66 @@ radioBoxes.forEach(radio => {
     })
 });
 
+keys.forEach(key => {
+    key.addEventListener('click', e => {
+        handleKey(e);
+    })
+});
+
 ///////////////////// on start /////////////////////
 trySavedTheme();
 
 ///////////////////// functions /////////////////////
+function handleKey(e) {
+    let hodnota = e.target.textContent;
+
+    if (e.target.classList.contains("num")) {
+        if (hodnota !== "." || dotCount === 0) {
+            if (hodnota === ".") {
+                dotCount++;
+            }
+
+            writeDisplay(hodnota);
+        }
+    } else if (e.target.classList.contains("action")) {
+        switch (hodnota) {
+            case "del":
+                deleteLast();
+                break;
+
+            case "-":
+                minus();
+                break;
+        }
+    }
+}
+
+function getDisplayValue() {
+    return display.textContent;
+}
+
+function writeDisplay(value) {
+    display.textContent += value;
+}
+
+function deleteLast() {
+    let obsah = getDisplayValue();
+    obsah = obsah.slice(0, -1);
+    display.textContent = obsah;
+}
+
+function deleteWhole() {
+    display.textContent = "";
+}
+
+function minus() {
+    if (getDisplayValue() === "") {
+        writeDisplay("-");
+    }
+
+
+}
+
 function setTheme(theme) {
     document.documentElement.className = theme;
     localStorage.setItem('theme', theme);

@@ -209,7 +209,7 @@ body {
     filter: brightness(120%);
 }
 
-.numkey {
+.blank {
     background-color: var(--clr-base-numeric);
     color: var(--clr-numkey-txt);
     border-bottom: 4px solid var(--clr-base-numeric-shadow);
