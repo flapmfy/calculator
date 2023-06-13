@@ -41,7 +41,7 @@ function handleKey(e) {
                 dotCount++;
             }
 
-            writeDisplay(hodnota);
+            appendDisplay(hodnota);
         }
     } else if (e.target.classList.contains("action")) {
         switch (hodnota) {
@@ -60,7 +60,7 @@ function getDisplayValue() {
     return display.textContent;
 }
 
-function writeDisplay(value) {
+function appendDisplay(value) {
     display.textContent += value;
 }
 
