@@ -1,99 +1,96 @@
-"use strict";
+'use strict';
 
 ///////////////////// globals /////////////////////
-const radioBoxes = document.querySelectorAll(".radio");
-const display = document.querySelector(".screen");
-const keys = document.querySelectorAll(".key");
+const themeRadios = document.querySelectorAll('input[type="radio"]');
+const display = document.querySelector('.screen');
+const keys = document.querySelectorAll('.key');
 let dotCount = 0;
 
 ///////////////////// handlers /////////////////////
-function getTheme() {
-    for (let radio of radioBoxes) {
-        if (radio.checked) {
-            return radio.value;
-        }
-    }
-}
 
 ///////////////////// events /////////////////////
-radioBoxes.forEach(radio => {
-    radio.addEventListener('change', () => {
-        setTheme(getTheme());
-    })
+keys.forEach((key) => {
+	key.addEventListener('click', (e) => {
+		handleKey(e);
+	});
 });
 
-keys.forEach(key => {
-    key.addEventListener('click', e => {
-        handleKey(e);
-    })
-});
-
-///////////////////// on start /////////////////////
-trySavedTheme();
+///////////////////// onload /////////////////////
+document.onload = retrieveTheme();
 
 ///////////////////// functions /////////////////////
 function handleKey(e) {
-    let hodnota = e.target.textContent;
+	let hodnota = e.target.textContent;
 
-    if (e.target.classList.contains("num")) {
-        if (hodnota !== "." || dotCount === 0) {
-            if (hodnota === ".") {
-                dotCount++;
-            }
+	if (e.target.classList.contains('num')) {
+		if (hodnota !== '.' || dotCount === 0) {
+			if (hodnota === '.') {
+				dotCount++;
+			}
 
-            appendDisplay(hodnota);
-        }
-    } else if (e.target.classList.contains("action")) {
-        switch (hodnota) {
-            case "del":
-                deleteLast();
-                break;
+			writeDisplay(hodnota);
+		}
+	} else {
+		switch (hodnota) {
+			case 'del':
+				deleteLast();
+				break;
 
-            case "-":
-                minus();
-                break;
-        }
-    }
+			case '-':
+				minus();
+				break;
+		}
+	}
 }
 
 function getDisplayValue() {
-    return display.textContent;
+	return display.textContent;
 }
 
-function appendDisplay(value) {
-    display.textContent += value;
+function writeDisplay(value) {
+	display.textContent += value;
 }
 
 function deleteLast() {
-    let obsah = getDisplayValue();
-    obsah = obsah.slice(0, -1);
-    display.textContent = obsah;
+	let obsah = getDisplayValue();
+	obsah = obsah.slice(0, -1);
+	display.textContent = obsah;
 }
 
 function deleteWhole() {
-    display.textContent = "";
+	display.textContent = '';
 }
 
 function minus() {
-    if (getDisplayValue() === "") {
-        writeDisplay("-");
-    }
+	if (getDisplayValue() === '') {
+		writeDisplay('-');
+	}
+}
 
+///////////////////// theme setter /////////////////////
+themeRadios.forEach((radio) => {
+	radio.addEventListener('click', () => {
+		const activeTheme = radio.id;
+		localStorage.setItem('theme', activeTheme);
 
+		setTheme(activeTheme);
+	});
+});
+
+function retrieveTheme() {
+	const savedTheme = localStorage.getItem('theme');
+
+	if (savedTheme) {
+		themeRadios.forEach((radio) => {
+			if (radio.id === savedTheme) {
+				radio.checked = true;
+			}
+		});
+
+		setTheme(savedTheme);
+	}
 }
 
 function setTheme(theme) {
-    document.documentElement.className = theme;
-    localStorage.setItem('theme', theme);
-}
-
-function trySavedTheme() {
-    const theme = localStorage.getItem('theme');
-    for (let radio of radioBoxes) {
-        if (radio.value === theme) {
-            radio.checked = true;
-            break;
-        }
-    }
-    theme && setTheme(theme);
+	document.documentElement.className = theme;
 }
