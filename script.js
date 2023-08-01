@@ -4,25 +4,34 @@
 const themeRadios = document.querySelectorAll('input[type="radio"]');
 const display = document.querySelector('.screen');
 const keys = document.querySelectorAll('.key');
+const keyPad = document.querySelector('.keypad');
 let dotCount = 0;
 
 ///////////////////// handlers /////////////////////
 
 ///////////////////// events /////////////////////
 keys.forEach((key) => {
-	key.addEventListener('click', (e) => {
-		handleKey(e);
+	key.addEventListener('click', () => {
+		handleKey(key);
 	});
+});
+
+window.addEventListener('keyup', (e) => {
+	const key = keyPad.querySelector(`[keycode="${e.keyCode}"]`);
+	console.log(e.keyCode);
+	if (key) {
+		handleKey(key);
+	}
 });
 
 ///////////////////// onload /////////////////////
 document.onload = retrieveTheme();
 
 ///////////////////// functions /////////////////////
-function handleKey(e) {
-	let hodnota = e.target.textContent;
+function handleKey(key) {
+	let hodnota = key.textContent;
 
-	if (e.target.classList.contains('num')) {
+	if (key.classList.contains('num')) {
 		if (hodnota !== '.' || dotCount === 0) {
 			if (hodnota === '.') {
 				dotCount++;
