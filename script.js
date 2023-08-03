@@ -88,6 +88,14 @@ function deleteLast() {
 	setDisplay(displayValue);
 }
 
+function round(number) {
+	if (!Number.isInteger(number)) {
+		return number.toFixed(2);
+	}
+
+	return number;
+}
+
 ///////////////////// operations /////////////////////
 function divide(num1, num2) {
 	if (num2 === 0) {
@@ -146,7 +154,7 @@ function handleOperation(operation) {
 
 	currentOperation = operation;
 
-	setDisplay(result);
+	setDisplay(round(result));
 	dotCount = 0;
 }
 
