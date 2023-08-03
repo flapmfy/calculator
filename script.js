@@ -20,7 +20,8 @@ keys.forEach((key) => {
 	});
 });
 
-window.addEventListener('keyup', (e) => {
+window.addEventListener('keydown', (e) => {
+	e.preventDefault();
 	let key = keyPad.querySelector(`[keycode="${e.keyCode}"]`);
 	console.log(key);
 	if (key) {
