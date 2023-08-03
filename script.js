@@ -6,8 +6,11 @@ const display = document.querySelector('.screen');
 const keys = document.querySelectorAll('.key');
 const keyPad = document.querySelector('.keypad');
 let dotCount = 0;
-let result = 0;
 
+let result = 0;
+let secondNumber = 0;
+let currentOperation = '';
+let isOperating = false;
 ///////////////////// handlers /////////////////////
 
 ///////////////////// events /////////////////////
@@ -19,7 +22,7 @@ keys.forEach((key) => {
 
 window.addEventListener('keyup', (e) => {
 	const key = keyPad.querySelector(`[keycode="${e.keyCode}"]`);
-	console.log(e.keyCode);
+
 	if (key) {
 		handleKey(key);
 	}
@@ -38,7 +41,12 @@ function handleKey(key) {
 				dotCount++;
 			}
 
-			writeDisplay(hodnota);
+			if (getDisplayValue() === '0' || isOperating) {
+				setDisplay(hodnota);
+				isOperating = false;
+			} else {
+				writeDisplay(hodnota);
+			}
 		}
 	} else {
 		switch (hodnota) {
@@ -46,9 +54,12 @@ function handleKey(key) {
 				deleteLast();
 				break;
 
-			case '-':
-				minus();
+			case 'reset':
+				reset();
 				break;
+
+			default:
+				handleOperation(key.id);
 		}
 	}
 }
@@ -61,20 +72,19 @@ function writeDisplay(value) {
 	display.textContent += value;
 }
 
+function setDisplay(value) {
+	display.textContent = value;
+}
+
 function deleteLast() {
-	let displayValue = display.textContent;
+	let displayValue = getDisplayValue();
 	displayValue = displayValue.slice(0, -1);
-	display.textContent = displayValue;
-}
 
-function clearDisplay() {
-	display.textContent = '';
-}
-
-function minus() {
-	if (getDisplayValue() === '') {
-		writeDisplay('-');
+	if (displayValue === '') {
+		displayValue = 0;
 	}
+
+	setDisplay(displayValue);
 }
 
 ///////////////////// operations /////////////////////
@@ -98,8 +108,44 @@ function subtract(num1, num2) {
 	return num1 - num2;
 }
 
-function handleOperation(num1, num2, operation) {
-	return operation(num1, num2);
+function reset() {
+	display.textContent = 0;
+	result = 0;
+	currentOperation = '';
+}
+
+function operate(num1, num2, operation) {
+	//return operation(num1, num2);
+	if (operation === 'add') {
+		return add(num1, num2);
+	} else if (operation === 'subtract') {
+		return subtract(num1, num2);
+	} else if (operation === 'multiply') {
+		return multiply(num1, num2);
+	} else if (operation === 'divide') {
+		return divide(num1, num2);
+	}
+}
+
+function handleOperation(operation) {
+	isOperating = true;
+	const currentValue = +getDisplayValue();
+
+	if (result === 0) {
+		result = currentValue;
+	}
+
+	if (currentOperation) {
+		result = operate(result, currentValue, currentOperation);
+	}
+
+	currentOperation = operation;
+
+	setDisplay(result);
+
+	console.log('Result: ' + result);
+	console.log('Second value: ' + currentValue);
+	console.log('Operation: ' + currentOperation);
 }
 
 ///////////////////// theme setter /////////////////////
