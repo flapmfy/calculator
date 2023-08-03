@@ -7,7 +7,7 @@ const keys = document.querySelectorAll('.key');
 const keyPad = document.querySelector('.keypad');
 let dotCount = 0;
 
-let result = 0;
+let result = null;
 let secondNumber = 0;
 let currentOperation = '';
 let isOperating = false;
@@ -21,8 +21,8 @@ keys.forEach((key) => {
 });
 
 window.addEventListener('keyup', (e) => {
-	const key = keyPad.querySelector(`[keycode="${e.keyCode}"]`);
-
+	let key = keyPad.querySelector(`[keycode="${e.keyCode}"]`);
+	console.log(key);
 	if (key) {
 		handleKey(key);
 	}
@@ -110,7 +110,7 @@ function subtract(num1, num2) {
 
 function reset() {
 	display.textContent = 0;
-	result = 0;
+	result = null;
 	currentOperation = '';
 }
 
@@ -131,7 +131,11 @@ function handleOperation(operation) {
 	isOperating = true;
 	const currentValue = +getDisplayValue();
 
-	if (result === 0) {
+	if (!currentValue) {
+		result = 0;
+	}
+
+	if (result === null) {
 		result = currentValue;
 	}
 
@@ -142,10 +146,11 @@ function handleOperation(operation) {
 	currentOperation = operation;
 
 	setDisplay(result);
+	dotCount = 0;
 
-	console.log('Result: ' + result);
-	console.log('Second value: ' + currentValue);
-	console.log('Operation: ' + currentOperation);
+	console.log('result: ' + result);
+	console.log('currentvalue: ' + currentValue);
+	console.log('operator: ' + currentOperation);
 }
 
 ///////////////////// theme setter /////////////////////

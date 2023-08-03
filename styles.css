@@ -172,11 +172,10 @@ body {
 
 .screen {
 	display: flex;
-	align-items: center;
 	justify-content: flex-end;
-	height: 6.5rem;
 	border-radius: 8px;
 	padding-inline: 2rem;
+	padding-block: 1rem;
 	background-color: var(--clr-screen);
 	color: var(--clr-header);
 	font-size: 3rem;
