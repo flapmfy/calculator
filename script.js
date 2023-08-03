@@ -6,6 +6,7 @@ const display = document.querySelector('.screen');
 const keys = document.querySelectorAll('.key');
 const keyPad = document.querySelector('.keypad');
 let dotCount = 0;
+let result = 0;
 
 ///////////////////// handlers /////////////////////
 
@@ -61,12 +62,12 @@ function writeDisplay(value) {
 }
 
 function deleteLast() {
-	let obsah = getDisplayValue();
-	obsah = obsah.slice(0, -1);
-	display.textContent = obsah;
+	let displayValue = display.textContent;
+	displayValue = displayValue.slice(0, -1);
+	display.textContent = displayValue;
 }
 
-function deleteWhole() {
+function clearDisplay() {
 	display.textContent = '';
 }
 
@@ -74,6 +75,31 @@ function minus() {
 	if (getDisplayValue() === '') {
 		writeDisplay('-');
 	}
+}
+
+///////////////////// operations /////////////////////
+function divide(num1, num2) {
+	if (num2 === 0) {
+		return 'ERROR';
+	}
+
+	return num1 / num2;
+}
+
+function multiply(num1, num2) {
+	return num1 * num2;
+}
+
+function add(num1, num2) {
+	return num1 + num2;
+}
+
+function subtract(num1, num2) {
+	return num1 - num2;
+}
+
+function handleOperation(num1, num2, operation) {
+	return operation(num1, num2);
 }
 
 ///////////////////// theme setter /////////////////////
