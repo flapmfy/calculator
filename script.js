@@ -147,10 +147,6 @@ function handleOperation(operation) {
 
 	setDisplay(result);
 	dotCount = 0;
-
-	console.log('result: ' + result);
-	console.log('currentvalue: ' + currentValue);
-	console.log('operator: ' + currentOperation);
 }
 
 ///////////////////// theme setter /////////////////////
