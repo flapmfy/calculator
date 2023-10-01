@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
-		<link rel="stylesheet" href="./styles.css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap" rel="stylesheet" />
-		<script src="./script.js" defer></script>
-		<title>Calculator</title>
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="./main.js" defer></script>
+    <title>Calculator</title>
+  </head>
 
-	<body>
-		<div class="calculator">
-			<header class="space-between calculator__header">
-				<h1 class="logo">calc</h1>
+  <body>
+    <div class="calculator">
+      <header class="space-between calculator__header">
+        <h1 class="logo">calc</h1>
 
-				<div class="theme-setter">
-					<div class="subtext">theme</div>
+        <div class="theme-setter">
+          <div class="subtext">theme</div>
 
-					<div class="toggle-element">
-						<div class="toggle-indicator"><span>1</span><span>2</span><span>3</span></div>
-						<div class="toggle3w">
-							<input class="radio radio1" type="radio" name="3w" value="theme1" id="theme1" checked />
-							<input class="radio radio2" type="radio" name="3w" value="theme2" id="theme2" />
-							<input class="radio radio3" type="radio" name="3w" value="theme3" id="theme3" />
-							<div class="dot"></div>
-						</div>
-					</div>
-				</div>
-			</header>
+          <div class="toggle-element">
+            <div class="toggle-indicator"><span>1</span><span>2</span><span>3</span></div>
+            <div class="toggle3w">
+              <input class="radio radio1" type="radio" name="3w" value="theme1" id="theme1" checked />
+              <input class="radio radio2" type="radio" name="3w" value="theme2" id="theme2" />
+              <input class="radio radio3" type="radio" name="3w" value="theme3" id="theme3" />
+              <div class="dot"></div>
+            </div>
+          </div>
+        </div>
+      </header>
 
-			<section class="screen">0</section>
+      <section class="screen">
+        <div class="previous-text"></div>
+        <div class="current-text"></div>
+      </section>
 
-			<section class="keypad">
-				<div keycode="103" class="key blank num">7</div>
-				<div keycode="104" class="key blank num">8</div>
-				<div keycode="105" class="key blank num">9</div>
-				<div keycode="8" class="key delete action">del</div>
-				<div keycode="100" class="key blank num">4</div>
-				<div keycode="101" class="key blank num">5</div>
-				<div keycode="102" class="key blank num">6</div>
-				<div keycode="107" class="key blank action" id="add">+</div>
-				<div keycode="97" class="key blank num">1</div>
-				<div keycode="98" class="key blank num">2</div>
-				<div keycode="99" class="key blank num">3</div>
-				<div keycode="109" class="key blank action" id="subtract">-</div>
-				<div keycode="190" class="key blank num">.</div>
-				<div keycode="96" class="key blank num">0</div>
-				<div keycode="111" class="key blank action" id="divide">/</div>
-				<div keycode="106" class="key blank action" id="multiply">x</div>
-				<div class="key reset action">reset</div>
-				<div keycode="13" class="key calculate action">=</div>
-			</section>
-		</div>
-	</body>
+      <section class="keypad">
+        <div data-key="7" data-num class="key blank">7</div>
+        <div data-key="8" data-num class="key blank">8</div>
+        <div data-key="9" data-num class="key blank">9</div>
+        <div data-key="Backspace" data-delete class="key delete">del</div>
+        <div data-key="4" data-num class="key blank">4</div>
+        <div data-key="5" data-num class="key blank">5</div>
+        <div data-key="6" data-num class="key blank">6</div>
+        <div data-key="+" data-operation class="key blank" id="add">+</div>
+        <div data-key="1" data-num class="key blank">1</div>
+        <div data-key="2" data-num class="key blank">2</div>
+        <div data-key="3" data-num class="key blank">3</div>
+        <div data-key="-" data-operation class="key blank" id="subtract">-</div>
+        <div data-key="." data-num class="key blank">.</div>
+        <div data-key="0" data-num class="key blank">0</div>
+        <div data-key="/" data-operation class="key blank" id="divide">÷</div>
+        <div data-key="*" data-operation class="key blank" id="multiply">×</div>
+        <div data-key="Escape" class="key reset" data-clear>reset</div>
+        <div data-key="Enter" data-equals class="key calculate">=</div>
+      </section>
+    </div>
+  </body>
 </html>
